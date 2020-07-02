@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+
 import propTypes from 'prop-types';
 import styles from './Form.module.css';
 class Form extends Component {
@@ -11,10 +11,8 @@ class Form extends Component {
     number: '',
   };
 
-  handleChange = e => {
-    const inputId = uuidv4();
-    const { name, value } = e.currentTarget;
-    this.setState({ id: inputId, [name]: value });
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
   };
   handleSubmit = e => {
     e.preventDefault();

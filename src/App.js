@@ -6,6 +6,7 @@ import 'modern-normalize/modern-normalize.css';
 import Filter from './components/Filter/';
 import { saveToLS, getFromLS } from './utils/helper';
 import styles from './App.module.css';
+import { v4 as uuidv4 } from 'uuid';
 
 class Phonebook extends Component {
   static defaultProps = {
@@ -33,13 +34,18 @@ class Phonebook extends Component {
     this.setState({ filter: e.currentTarget.value });
   };
   notifyExistingName = data => {
+    const newContact = {
+      id: uuidv4(),
+      name: data.name,
+      number: data.number,
+    };
     const existingName = this.state.contacts.find(
       contact => contact.name === data.name,
     );
     if (existingName) {
       alert(`${data.name} is already in contacts`);
     } else {
-      this.setState({ contacts: [...this.state.contacts, data] });
+      this.setState({ contacts: [...this.state.contacts, newContact] });
     }
   };
   deleteContact = deleteId => {
@@ -61,7 +67,7 @@ class Phonebook extends Component {
     const visibleContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(normolizeContact),
     );
-
+    console.log(this.state);
     return (
       <>
         <div className={styles.container}>
