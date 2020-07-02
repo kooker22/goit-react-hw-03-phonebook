@@ -8,13 +8,13 @@ class Form extends Component {
   };
   state = {
     name: '',
-    id: '',
     number: '',
   };
-  handleChangeName = e => {
-    const { name, value, number } = e.currentTarget;
-
-    this.setState({ id: uuidv4(), [name]: value, [number]: value });
+  inputId = uuidv4();
+  numberId = uuidv4();
+  handleChange = e => {
+    const { name, value } = e.currentTarget;
+    this.setState({ id: this.inputId, [name]: value });
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -22,10 +22,7 @@ class Form extends Component {
     this.props.onSubmit(this.state);
     this.resetForm();
   };
-  handleChangeNumber = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
-  };
+
   resetForm = () => {
     this.setState({ name: '', number: '' });
   };
@@ -41,7 +38,7 @@ class Form extends Component {
               type="text"
               name="name"
               value={name}
-              onChange={this.handleChangeName}
+              onChange={this.handleChange}
               className={styles.input}
             ></input>
           </label>
@@ -52,7 +49,7 @@ class Form extends Component {
               type="tel"
               name="number"
               value={number}
-              onChange={this.handleChangeNumber}
+              onChange={this.handleChange}
               className={styles.input}
             ></input>
           </label>
