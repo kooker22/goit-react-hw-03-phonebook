@@ -10,15 +10,14 @@ class Form extends Component {
     name: '',
     number: '',
   };
-  inputId = uuidv4();
-  numberId = uuidv4();
+
   handleChange = e => {
+    const inputId = uuidv4();
     const { name, value } = e.currentTarget;
-    this.setState({ id: this.inputId, [name]: value });
+    this.setState({ id: inputId, [name]: value });
   };
   handleSubmit = e => {
     e.preventDefault();
-
     this.props.onSubmit(this.state);
     this.resetForm();
   };
