@@ -4,6 +4,7 @@ import Form from './components/Form';
 import ContactList from './components/ContactList';
 import 'modern-normalize/modern-normalize.css';
 import Filter from './components/Filter/';
+import { saveToLS, getFromLS } from './utils/helper';
 import styles from './App.module.css';
 
 class Phonebook extends Component {
@@ -53,13 +54,11 @@ class Phonebook extends Component {
   };
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      saveToLS('contacts', this.state.contacts);
     }
   }
   componentDidMount() {
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
-    this.setState({ contacts: parsedContacts });
+    this.setState({ contacts: getFromLS('contacts') });
   }
   render() {
     const { contacts, filter } = this.state;
