@@ -19,7 +19,7 @@ class Phonebook extends Component {
         number: propTypes.string.isRequired,
       }),
     ),
-    filter: propTypes.string.isRequired,
+    filter: propTypes.string,
   };
   state = {
     contacts: [
