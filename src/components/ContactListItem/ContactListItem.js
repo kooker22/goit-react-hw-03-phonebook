@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ContactListItem.module.css';
 import IconButton from '../IconButton/IconButton';
-import { ReactComponent as Icon } from '../Icons/icon.svg';
+import { ReactComponent as Icon } from '../../theme/icons/icon.svg';
 
 const ContactListItem = ({ contacts, onDeleteContact }) => (
   <>
